@@ -4,6 +4,10 @@
 name: Font Bakery CI
 
 on: [push, pull_request]
+    paths: 
+      - 'sources/**'
+      - 'fonts/**.ttf'
+      - 'fonts/**.otf'
 
 jobs:
   fontbakery:
@@ -37,6 +41,13 @@ jobs:
         subcmd: "check-notofonts"
         args: "--loglevel WARN"  # optional additional args to subcmd
         path: "main/fonts/ttf/unhinted/instance_ttf/*.ttf"
+        version: "latest"  # optional, latest PyPI release is default
+    - name: Font Bakery CI testing [INSTANCE OTF]
+      uses: f-actions/font-bakery@v1
+      with:
+        subcmd: "check-notofonts"
+        args: "--loglevel WARN"  # optional additional args to subcmd
+        path: "main/fonts/otf/unhinted/instance_otf/*.otf"
         version: "latest"  # optional, latest PyPI release is default
     - name: Font Bakery CI testing [VARIABLE TTF]
       uses: f-actions/font-bakery@v1
